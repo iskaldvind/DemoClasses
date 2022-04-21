@@ -303,8 +303,8 @@
                     android:gravity="center"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/classes_recycler"
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/classes_pager"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -333,8 +333,8 @@
                     android:gravity="center"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/homework_recycler"
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/homework_pager"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
