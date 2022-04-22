@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="icon_size">24dp</dimen>
+    <dimen name="class_card_container_height">144dp</dimen>
+    <dimen name="class_card_border_height">120dp</dimen>
+    <dimen name="class_card_height">100dp</dimen>
+    <dimen name="class_card_ext_container_height">244dp</dimen>
+    <dimen name="class_card_ext_border_height">220dp</dimen>
+    <dimen name="class_card_ext_height">200dp</dimen>
 </resources>

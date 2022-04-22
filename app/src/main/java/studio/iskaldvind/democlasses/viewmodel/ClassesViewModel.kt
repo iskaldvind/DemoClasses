@@ -1,11 +1,14 @@
 package studio.iskaldvind.democlasses.viewmodel
 
+import android.os.Handler
+import android.os.Looper
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import studio.iskaldvind.democlasses.base.BaseViewModel
 import studio.iskaldvind.democlasses.model.AppClass
 import studio.iskaldvind.democlasses.repository.IRepository
+import java.util.*
 
 class ClassesViewModel(
     private val repository: IRepository
@@ -13,12 +16,39 @@ class ClassesViewModel(
 
     private val _data = MutableStateFlow<List<AppClass>>(listOf())
     val data: StateFlow<List<AppClass>> = _data
+    private val _time = MutableStateFlow(getCurrentTime())
+    val time: StateFlow<Long> = _time
+    private val handler = Handler(Looper.getMainLooper())
+
+    private val timerTask = object : Runnable {
+        override fun run() {
+            viewModelCoroutineScope.launch {
+                _time.value = getCurrentTime()
+            }
+            handler.postDelayed(this, 60000)
+        }
+    }
 
     fun getData() {
+        startTimer()
         viewModelCoroutineScope.launch {
             _data.value = repository.getClasses()
         }
     }
 
-    override fun handleError(error: Throwable) {}
+    private fun startTimer() {
+        handler.post(timerTask)
+    }
+
+    private fun getCurrentTime(): Long =
+        (Calendar.getInstance().timeInMillis/60000).toInt().toLong() * 60000
+
+    override fun handleError(error: Throwable) {
+        //
+    }
+
+    override fun onCleared() {
+        handler.removeCallbacks(timerTask)
+        super.onCleared()
+    }
 }

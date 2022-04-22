@@ -1,5 +1,8 @@
 package studio.iskaldvind.democlasses.view
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -8,10 +11,12 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.android.material.snackbar.Snackbar
 import studio.iskaldvind.democlasses.R
-import studio.iskaldvind.democlasses.base.BaseActivity
 import studio.iskaldvind.democlasses.R.layout.main_activity
+import studio.iskaldvind.democlasses.base.BaseActivity
 import studio.iskaldvind.democlasses.databinding.MainActivityBinding
+
 
 class MainActivity: BaseActivity(main_activity) {
 
@@ -70,6 +75,16 @@ class MainActivity: BaseActivity(main_activity) {
             nav.icon.setColorFilter(this.getColor(tint))
             nav.label.setTextColor(this.getColor(tint))
             nav.label.visibility = if (nav.tag == tag) View.VISIBLE else View.GONE
+        }
+    }
+
+    fun openSkype() {
+        try {
+            val sky = Intent("android.intent.action.VIEW")
+            sky.data = Uri.parse("skype:${"+777777"}")
+            this.startActivity(sky)
+        } catch (e: ActivityNotFoundException) {
+            Snackbar.make(binding.root, "Skype is not installed", Snackbar.LENGTH_LONG).show()
         }
     }
 }

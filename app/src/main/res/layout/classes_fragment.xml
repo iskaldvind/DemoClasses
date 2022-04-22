@@ -22,7 +22,7 @@
             android:textColor="@color/primary_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="Classes"
+            android:text="Classes"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
